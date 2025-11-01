@@ -1,0 +1,492 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OBS Project</title>
+  <link rel="stylesheet" href="{% static 'css/splide.min.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    #navbarNav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    #navElement {
+      background-color: rgb(39, 174, 96);
+    }
+
+    #navbarNav ul li a {
+      color: white;
+      font-size: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      padding-left: 10px;
+    }
+
+    .fa-magnifying-glass {
+      margin-left: -50px;
+    }
+    i{
+    color: rgb(39, 174, 96);
+      
+    }
+      .book-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  
+  .book-img {
+    height: 220px;
+    width: 100%;
+    object-fit: contain; 
+    background-color: #fff; 
+    padding: 8px; 
+  }
+
+  .price {
+    font-weight: bold;
+    color: #198754;
+  }
+
+  .old-price {
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 8px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+  }
+ .section-container {
+      margin-top: 60px;    /* top space */
+      margin-bottom: 60px; /* bottom space */
+      padding-top: 30px;   /* inner top padding */
+      padding-bottom: 30px;/* inner bottom padding */
+    }
+
+    .section-title {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid #e0e0e0;
+      background: #fff;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .book-card {
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      transition: transform .25s ease, box-shadow .25s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .book-thumb {
+      width: 95px;
+      height: 120px;
+      object-fit: contain;
+      margin-right: 18px;
+      flex-shrink: 0;
+    }
+
+    .book-meta h5 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .price-line {
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    .price-current {
+      font-weight: 700;
+      color: #0b6b3a;
+    }
+
+    .price-old {
+      text-decoration: line-through;
+      color: #888;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+
+    .rating {
+      margin-top: 10px;
+      color: #198754; /* green */
+      font-size: 0.95rem;
+    }
+
+    /* Make sure carousel item has vertical spacing between two rows */
+    .two-rows {
+      row-gap: 20px;
+    }
+
+    /* small screens: stack card content nicely */
+    @media (max-width: 767.98px) {
+      .book-thumb { width: 72px; height: 95px; margin-right: 12px; }
+      .book-meta h5 { font-size: 0.98rem; }
+    }
+    .reviews-section {
+      margin-top: 60px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .reviews-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .review-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 30px 20px;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    }
+
+    .review-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .review-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .review-text {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .review-stars {
+      color: #28a745;
+      font-size: 1.1rem;
+    }
+    .blog-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    .blog-img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .blog-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .blog-text {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .btn-read {
+      background-color: #198754;
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-read:hover {
+      background-color: #157347;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <!-- head section -->
+    <div class="row">
+      <div class="col-sm-11 mx-auto bg-wraning">
+<div class="row">
+  <div class="col-sm-3">
+    <div class="text-center py-3">
+      <img src="{% static 'images/vidya.webp' %}" alt="">
+    </div>
+  </div>
+  <div class="col-sm-1">
+
+  </div>
+  <div class="col-sm-4">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <input type="text" class="form-control my-4 py-2" placeholder="search here...">
+    </div>
+  </div>
+  <div class="col-sm-1"> </div>
+  <div class="col-sm-3">
+<div class="d-flex justify-content-center align-items-center h-100">
+  <span><i class="fa-solid fa-heart text-dark fa-2x"></i></span>
+  <span><i class="fa-solid fa-cart-shopping text-dark fa-2x ms-4"></i></span>
+  <span><i class="fa-solid fa-user text-dark fa-2x ms-4"></i></span>
+</div>
+  </div>
+</div>
+      </div>
+    </div>
+
+    <!-- head section -->
+
+
+    <!-- header section -->
+    <div class="row sticky-top">
+      <div class="col-sm-12 p-0" id="navElement">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Category</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'login' %}">Login</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- header section END -->
+
+    <!-- main section -->
+    
+    {% block body %}
+
+    {% endblock %}
+    <!-- main section End-->
+
+    <!-- footer section -->
+    <div class="row">
+      <div class="col-sm-12 p-0">
+        <!-- Footer -->
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+          
+
+          <!-- Section: Links  -->
+          <section class="">
+            <div class="container text-center text-md-start mt-5">
+              <!-- Grid row -->
+              <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                  <!-- Content -->
+                  <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="fas fa-gem me-3"></i>Company name
+                  </h6>
+                  <p>
+                    Here you can use rows and columns to organize your footer content. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit.
+                  </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">
+                    Quick Links
+                  </h6>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset" style="border:none">Home</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Categories</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">About</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Contact</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Register</a>
+                  </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">
+                    Extra links
+                  </h6>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Account Info</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Ordered Items</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Privacy Policy</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Payment Method</a>
+                  </p>
+                  <p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#!" class="text-reset">Our Service</a>
+                  </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">Contact Info</h6>
+                  
+                  <p><i class="fas fa-phone me-3"></i> +91 9511194934</p>
+                  <p><i class="fas fa-phone me-3"></i> +91 01 234 567 88</p>
+                  <p>
+                    <i class="fas fa-envelope me-3"></i>
+                    sn2307377@gmail.com
+                  </p>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row -->
+            </div>
+          </section>
+          <!-- Section: Links  -->
+
+          <!-- Section: Social media -->
+          <section class=" text-center text-white fs-3 p-4 border-bottom">
+            <!-- Right -->
+            <div>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+            <!-- Right -->
+          </section>
+          <!-- Section: Social media -->
+
+          <!-- Copyright -->
+          <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+      </div>
+    </div>
+    <!-- footer section END -->
+
+
+    <!-- container END -->
+  </div>
+  <!-- container END -->
+
+  <!-- splide js -->
+<script src="{% static 'js/splide.min.js' %}"></script>
+<script>
+  var splide = new Splide( '.splide', {
+  type    : 'loop',
+  perPage : 4,
+  autoplay: true,
+} );
+
+splide.mount();
+</script>
+
+<!-- aplide js end  -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

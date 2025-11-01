@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-10 shadow mx-auto my-5">
+        <div class="row py-5 p-4">
+            <div class="col-sm-4">
+                <div class="mx-auto my-auto">
+                    {% if book.cover_image %}
+                    <img src="{{book.cover_image.url}}" alt="" style="height:400px" class="card">
+                    {% else %}
+                    No image Found
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class=" mx-auto my-auto">
+                    <h3 class="text-cener text-success">{{book.title}}</h3>
+                    <h6 class="text-start"><b>Author Name:</b> {{book.author}}</h6>
+                    <p class="text-start"><b>Description:</b> {{book.description}}</p>
+                    <span><b>Language:</b> {{book.language}}</span><br>
+                    <span><b>Published Date:</b> {{book.published_date}}</span><br>
+                    <h4 class="text-success mt-2">Get It Now</h4>
+                    <span><del>₹{{book.original_price}}</del><strong
+                            class="text-danger">₹{{book.price}}</strong></span><br>
+                    <div class="mt-3">
+                        <span>Quantity:</span>
+                        <form method="post" action="{% url 'addtocart' book.id %}">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" class="form-control d-inline-block" style="width:60px;" value="1" min="1">
+                            <button type="submit" class="btn btn-success mt-2">Add to Cart</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block body %}
+
+
+
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height:80vh">
+    <div class="card shadow p-4" style="width: 30vw;">
+        <h3 class="text-warning text-center">Login Here</h3>
+        {% if messages %}
+            {% for u in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{u}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <hr>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" name="username" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-warning mt-3">Login</button>
+            </div>
+        </form>
+        <div class="mt-4">
+            <p>Don't Have An Account? <a href="{% url 'register' %}" class="text-warning">Create One</a></p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

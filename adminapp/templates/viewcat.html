@@ -1,0 +1,38 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block admin %}
+
+<div class="container-fluid">
+    <h3 class="text-center text-success">View Categories</h3>
+    <div class="row">
+        <div class="col-sm-12 mx-auto">
+            <div class="table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>S. No</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in cats %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.description }}</td>
+                            <td>
+                                <a href="#" class="btn btn-outline-danger me-2">Delete</a>
+                                <a href="#" class="btn btn-outline-primary">Edit</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
